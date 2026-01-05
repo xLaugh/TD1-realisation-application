@@ -1,6 +1,7 @@
 services:
   node:
     image: node:22-alpine
+    command: sh -c "npm install && npm run dev"
     volumes:
       - .:/app
     restart: always
