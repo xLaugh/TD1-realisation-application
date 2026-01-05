@@ -4,6 +4,15 @@ services:
       context: build
     volumes:
       - ./:/var/www/html
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "54340:80"
+    volumes:
+      - ./:/var/www/html
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+
   database:
     #user: "${UID}:${GID}"
     image: mariadb:10
