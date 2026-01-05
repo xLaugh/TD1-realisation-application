@@ -1,0 +1,9 @@
+services:
+  node:
+    image: node:22-alpine
+    volumes:
+      - .:/app
+    restart: always
+    ports:
+      - 3000:3000
+    working_dir: /app
