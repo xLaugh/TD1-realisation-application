@@ -1,10 +1,16 @@
 services:
   node:
-    image: node:22-alpine
-    command: sh -c "npm install && npm run dev"
+    build:
+      context: .
+      dockerfile: ./build/Dockerfile
+    command: npm run dev
     volumes:
       - .:/app
-    restart: always
+      - node_modules:/app/node_modules
     ports:
       - 3000:3000
+    restart: always
     working_dir: /app
+
+volumes:
+  node_modules:
