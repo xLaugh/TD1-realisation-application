@@ -9,10 +9,10 @@ Rédiger un README.md pour chaque projet, qui permet d'expliquer sommairement le
 
 ## Exercice PHP
 Commencer par le projet PHP qui est plus détaillé et plus long :
-- [ ] Installer et lancer le projet (le site doit afficher "Hello World", c'est tout) :
-    - [ ] Créer un dockerfile pour php (et eventuellement nginx / apache)
-    - [ ] Créer un fichier docker-compose.yml pour orchester et démarer les containers nécessaires => Vous devez avoir à minima une image docker pour la bdd, et une pour le serveur php
-    - [ ] Créer un fichier .env 
+- [X] Installer et lancer le projet (le site doit afficher "Hello World", c'est tout) :
+    - [X] Créer un dockerfile pour php (et eventuellement nginx / apache)
+    - [X] Créer un fichier docker-compose.yml pour orchester et démarer les containers nécessaires => Vous devez avoir à minima une image docker pour la bdd, et une pour le serveur php
+    - [X] Créer un fichier .env 
 - [ ] Importez les dépendances déja dans le projet grâce à composer
 - [ ] Il manquera une dépendance (erreur php), l'importer grâce à composer
 - [ ] Completer le readme
