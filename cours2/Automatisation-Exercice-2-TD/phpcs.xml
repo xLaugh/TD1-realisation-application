@@ -12,5 +12,5 @@
       <exclude name="Generic.Files.LineLength"/>
     </rule>
 
-    <file>php/</file>
+    <file>src/</file>
 </ruleset>
