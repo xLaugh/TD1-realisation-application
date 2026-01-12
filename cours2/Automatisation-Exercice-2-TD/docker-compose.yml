@@ -37,7 +37,7 @@ services:
         volumes:
             - ./docker/db_data:/var/lib/mysql
         ports:
-            - "${DB_PORT:-3306}:3306"
+            - "${DB_PORT:-3307}:3306"
 
 volumes:
     db-data:
