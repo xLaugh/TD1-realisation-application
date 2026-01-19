@@ -31,27 +31,37 @@ class WalletTest extends TestCase
     {
         $wallet = new Wallet('USD');
         $wallet->addFund(100);
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Invalid amount');
         $wallet->removeFund(-10);
     }
     public function testWalletRemoveFundWithInsufficientFunds(): void 
     {
         $wallet = new Wallet('EUR');
         $wallet->addFund(50);
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Insufficient funds');
         $wallet->removeFund(100);
     }
     public function testWalletRemoveFundFromEmptyWallet(): void    
     {
         $wallet = new Wallet('EUR');
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Insufficient funds');
         $wallet->removeFund(10);
     }
     public function testWalletAddFundWithNegativeAmount(): void
     {
         $wallet = new Wallet('EUR');
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Invalid amount');
         $wallet->addFund(-10);
     }
     public function testWalletSetBalanceWithNegativeAmount(): void
     {
         $wallet = new Wallet('EUR');
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Invalid balance');
         $wallet->setBalance(-10);
     }
     public function testWalletSetBalanceWithValidAmount(): void
@@ -60,15 +70,17 @@ class WalletTest extends TestCase
         $wallet->setBalance(100);
         $this->assertEquals(100, $wallet->getBalance());
     }
-    public function testWalletSetCurrencyWithInvalidCurrency(): void
-    {
-        $wallet = new Wallet('EUR');
-        $wallet->setCurrency('USD');
-    }
     public function testWalletSetCurrencyWithValidCurrency(): void
     {
         $wallet = new Wallet('EUR');
         $wallet->setCurrency('EUR');
         $this->assertEquals('EUR', $wallet->getCurrency());
+    }
+    public function testWalletSetCurrencyWithInvalidCurrency(): void
+    {
+        $wallet = new Wallet('EUR');
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Invalid currency');
+        $wallet->setCurrency('INVALID');
     }
 }
