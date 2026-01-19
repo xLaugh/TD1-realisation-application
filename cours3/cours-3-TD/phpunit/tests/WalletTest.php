@@ -83,4 +83,14 @@ class WalletTest extends TestCase
         $this->expectExceptionMessage('Invalid currency');
         $wallet->setCurrency('GBP');
     }
+    public function testWalletGetCurrency(): void //teste la récupération de la devise
+    {
+        $wallet = new Wallet('EUR');
+        $this->assertEquals('EUR', $wallet->getCurrency());
+    }
+    public function testWalletGetBalance(): void //teste la récupération du solde
+    {
+        $wallet = new Wallet('EUR');
+        $this->assertEquals(0, $wallet->getBalance());
+    }
 }
