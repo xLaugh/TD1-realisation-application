@@ -1,0 +1,16 @@
+services:
+  node:
+    build:
+      context: .
+      dockerfile: ./build/Dockerfile
+    command: npm run dev
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    ports:
+      - 3000:3000
+    restart: always
+    working_dir: /app
+
+volumes:
+  node_modules:
