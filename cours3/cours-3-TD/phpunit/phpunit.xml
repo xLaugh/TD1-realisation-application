@@ -15,7 +15,7 @@ colors="true">
     <!-- Configuration des répertoires de sources-->
     <source>
         <include>
-            <directory suffix=".php">Entity</directory>
+            <directory suffix=".php">src/Entity</directory>
         </include>
     </source>
 </phpunit>
