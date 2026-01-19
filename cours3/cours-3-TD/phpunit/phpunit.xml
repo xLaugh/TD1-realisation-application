@@ -6,5 +6,16 @@ xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
 bootstrap="vendor/autoload.php"
 colors="true">
 
-    <!-- Todo : completer la configuration -->
+    <!-- Configuration des répertoires de tests-->
+    <testsuites>
+        <testsuite name="Tests">
+            <directory >tests</directory>
+        </testsuite>
+    </testsuites>
+    <!-- Configuration des répertoires de sources-->
+    <source>
+        <include>
+            <directory suffix=".php">Entity</directory>
+        </include>
+    </source>
 </phpunit>
