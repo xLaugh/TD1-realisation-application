@@ -82,5 +82,11 @@ class ProductTest extends TestCase
         $this->expectException(\Exception::class);
         $prix = $this->produit->getPrice('CAD');
     }
+
+    //List Currencies
+    public function testListCurrencies(): void
+    {
+        $this->assertEquals($this->produit->listCurrencies(), ['EUR']);
+    }
     
 }
