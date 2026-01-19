@@ -27,45 +27,99 @@ class PopulateDatabaseCommand extends Command
         $this->setDescription('Populate database');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output ): int
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln('Populate database...');
 
         /** @var \Illuminate\Database\Capsule\Manager $db */
         $db = $this->app->getContainer()->get('db');
 
+        // Clear existing data
         $db->getConnection()->statement("SET FOREIGN_KEY_CHECKS=0");
         $db->getConnection()->statement("TRUNCATE `employees`");
         $db->getConnection()->statement("TRUNCATE `offices`");
         $db->getConnection()->statement("TRUNCATE `companies`");
         $db->getConnection()->statement("SET FOREIGN_KEY_CHECKS=1");
 
+        // Initialize Faker with French locale
+        $faker = \Faker\Factory::create('fr_FR');
 
-        $db->getConnection()->statement("INSERT INTO `companies` VALUES
-    (1,'Stack Exchange','0601010101','stack@exchange.com','https://stackexchange.com/','https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Verisure_information_technology_department_at_Ch%C3%A2tenay-Malabry_-_2019-01-10.jpg/1920px-Verisure_information_technology_department_at_Ch%C3%A2tenay-Malabry_-_2019-01-10.jpg', now(), now(), null),
-    (2,'Google','0602020202','contact@google.com','https://www.google.com','https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Google_office_%284135991953%29.jpg/800px-Google_office_%284135991953%29.jpg?20190722090506',now(), now(), null)
-        ");
+        // Job titles pool
+        $jobTitles = [
+            'Développeur', 'Ingénieur', 'Chef de projet', 'Architecte logiciel',
+            'DevOps', 'Data Scientist', 'Product Owner', 'Scrum Master',
+            'Designer UX/UI', 'Testeur QA', 'Administrateur système', 'DBA',
+            'Analyste', 'Consultant', 'Directeur technique', 'Responsable RH'
+        ];
 
-        $db->getConnection()->statement("INSERT INTO `offices` VALUES
-    (1,'Bureau de Nancy','1 rue Stanistlas','Nancy','54000','France','nancy@stackexchange.com',NULL,1, now(), now()),
-    (2,'Burea de Vandoeuvre','46 avenue Jeanne d\'Arc','Vandoeuvre','54500','France',NULL,NULL,1, now(), now()),
-    (3,'Siege sociale','2 rue de la primatiale','Paris','75000','France',NULL,NULL,2, now(), now()),
-    (4,'Bureau Berlinois','192 avenue central','Berlin','12277','Allemagne',NULL,NULL,2, now(), now())
-        ");
+        $companies = [];
+        $allOffices = [];
 
-        $db->getConnection()->statement("INSERT INTO `employees` VALUES
-     (1,'Camille','La Chenille',1,'camille.la@chenille.com',NULL,'Ingénieur', now(), now()),
-     (2,'Albert','Mudhat',2,'albert.mudhat@aqume.net',NULL,'Superviseur', now(), now()),
-     (3,'Sylvie','Tesse',3,'sylive.tesse@factice.local',NULL,'PDG', now(), now()),
-     (4,'John','Doe',4,'john.doe@generique.org',NULL,'Testeur', now(), now()),
-     (5,'Jean','Bon',1,'jean@test.com',NULL,'Developpeur', now(), now()),
-     (6,'Anais','Dufour',2,'anais@aqume.net',NULL,'DBA', now(), now()),
-     (7,'Sylvain','Poirson',3,'sylvain@factice.local',NULL,'Administrateur réseau', now(), now()),
-     (8,'Telma','Thiriet',4,'telma@generique.org',NULL,'Juriste', now(), now())
-        ");
+        // Generate exactly 3 companies
+        $numCompanies = 3;
+        $output->writeln("Generating {$numCompanies} companies...");
 
-        $db->getConnection()->statement("update companies set head_office_id = 1 where id = 1;");
-        $db->getConnection()->statement("update companies set head_office_id = 3 where id = 2;");
+        for ($i = 0; $i < $numCompanies; $i++) {
+            $company = new Company();
+            $company->name = $faker->company();
+            $company->phone = $faker->phoneNumber();
+            $company->email = $faker->companyEmail();
+            $company->website = $faker->url();
+            $company->image = $faker->imageUrl(800, 600, 'business', true);
+            $company->save();
+
+            $companies[] = $company;
+            $output->writeln("  - Created company: {$company->name}");
+
+            // Generate 2-3 offices for this company
+            $numOffices = $faker->numberBetween(2, 3);
+            $companyOffices = [];
+
+            for ($j = 0; $j < $numOffices; $j++) {
+                $office = new Office();
+                $office->name = $j === 0 ? 'Siège social' : $faker->randomElement(['Bureau de ', 'Agence de ', 'Site de ']) . $faker->city();
+                $office->address = $faker->streetAddress();
+                $office->city = $faker->city();
+                $office->zip_code = $faker->postcode();
+                $office->country = 'France';
+                $office->email = $faker->optional(0.7)->email();
+                $office->phone = $faker->optional(0.6)->phoneNumber();
+                $office->company_id = $company->id;
+                $office->save();
+
+                $companyOffices[] = $office;
+                $allOffices[] = $office;
+                $output->writeln("    - Created office: {$office->name} in {$office->city}");
+            }
+
+            // Set the first office as head office
+            $company->head_office_id = $companyOffices[0]->id;
+            $company->save();
+        }
+
+        // Generate approximately 10 employees distributed across all offices
+        $numEmployees = $faker->numberBetween(30, 33);
+        $output->writeln("Generating {$numEmployees} employees...");
+
+        for ($i = 0; $i < $numEmployees; $i++) {
+            $employee = new Employee();
+            $employee->first_name = $faker->firstName();
+            $employee->last_name = $faker->lastName();
+            
+            // Generate email based on actual employee name
+            $emailDomains = ['entreprise.fr', 'company.com', 'societe.fr', 'business.net'];
+            $emailPrefix = strtolower($employee->first_name . '.' . $employee->last_name);
+            // Remove accents and special characters from email
+            $emailPrefix = iconv('UTF-8', 'ASCII//TRANSLIT', $emailPrefix);
+            $emailPrefix = preg_replace('/[^a-z0-9.]/', '', $emailPrefix);
+            $employee->email = $emailPrefix . '@' . $faker->randomElement($emailDomains);
+            $employee->phone = $faker->optional(0.5)->phoneNumber();
+            $employee->job_title = $faker->randomElement($jobTitles);
+            $employee->office_id = $faker->randomElement($allOffices)->id;
+            $employee->save();
+
+            $output->writeln("  - Created employee: {$employee->first_name} {$employee->last_name} ({$employee->job_title})");
+        }
 
         $output->writeln('Database created successfully!');
         return 0;
