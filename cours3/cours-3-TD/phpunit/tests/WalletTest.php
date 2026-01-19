@@ -88,9 +88,37 @@ class WalletTest extends TestCase
         $wallet = new Wallet('EUR');
         $this->assertEquals('EUR', $wallet->getCurrency());
     }
-    public function testWalletGetBalance(): void //teste la récupération du solde
+
+    public function testWalletConstructorWithInvalidCurrency(): void //teste le constructeur avec une devise invalide
+    {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Invalid currency');
+        new Wallet('GBP');
+    }
+
+    public function testWalletAddFundWithZeroAmount(): void //teste l'ajout de fonds avec un montant zéro
+    {
+        $wallet = new Wallet('USD');
+        $wallet->addFund(0);
+        $this->assertEquals(0, $wallet->getBalance());
+    }
+
+    public function testWalletRemoveFundWithExactBalance(): void //teste le retrait de fonds avec un montant égal au solde
     {
         $wallet = new Wallet('EUR');
+        $wallet->addFund(100);
+        $wallet->removeFund(100);
         $this->assertEquals(0, $wallet->getBalance());
+    }
+
+    public function testWalletMultipleOperations(): void //teste plusieurs opérations successives (addFund et removeFund)
+    {
+        $wallet = new Wallet('USD');
+        $wallet->addFund(100);
+        $wallet->addFund(50);
+        $wallet->removeFund(30);
+        $wallet->addFund(25);
+        $wallet->removeFund(45);
+        $this->assertEquals(100, $wallet->getBalance());
     }
 }
