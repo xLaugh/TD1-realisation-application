@@ -7,27 +7,27 @@ use PHPUnit\Framework\TestCase;
 
 class WalletTest extends TestCase
 {
-    public function testWalletBalance(): void
+    public function testWalletBalance(): void //teste la balance initiale du wallet
     {
         $wallet = new Wallet('USD');
         $this->assertEquals(0, $wallet->getBalance());
     }
 
-    public function testWalletAddFund(): void
+    public function testWalletAddFund(): void //teste l'ajout de fonds au wallet
     {
         $wallet = new Wallet('USD');
         $wallet->addFund(100);
         $this->assertEquals(100, $wallet->getBalance());
     }
 
-    public function testWalletRemoveFund(): void
+    public function testWalletRemoveFund(): void //teste le retrait de fonds au wallet
     {
         $wallet = new Wallet('USD');
         $wallet->addFund(100);
         $wallet->removeFund(50);
         $this->assertEquals(50, $wallet->getBalance());
     }
-    public function testWalletRemoveFundWithNegativeAmount(): void
+    public function testWalletRemoveFundWithNegativeAmount(): void //teste le retrait de fonds avec un montant négatif
     {
         $wallet = new Wallet('USD');
         $wallet->addFund(100);
@@ -35,7 +35,7 @@ class WalletTest extends TestCase
         $this->expectExceptionMessage('Invalid amount');
         $wallet->removeFund(-10);
     }
-    public function testWalletRemoveFundWithInsufficientFunds(): void 
+    public function testWalletRemoveFundWithInsufficientFunds(): void //teste le retrait de fonds avec un montant supérieur au solde
     {
         $wallet = new Wallet('EUR');
         $wallet->addFund(50);
@@ -43,44 +43,44 @@ class WalletTest extends TestCase
         $this->expectExceptionMessage('Insufficient funds');
         $wallet->removeFund(100);
     }
-    public function testWalletRemoveFundFromEmptyWallet(): void    
+    public function testWalletRemoveFundFromEmptyWallet(): void //teste le retrait de fonds avec un solde nul
     {
         $wallet = new Wallet('EUR');
         $this->expectException(\Exception::class);
         $this->expectExceptionMessage('Insufficient funds');
         $wallet->removeFund(10);
     }
-    public function testWalletAddFundWithNegativeAmount(): void
+    public function testWalletAddFundWithNegativeAmount(): void //teste l'ajout de fonds avec un montant négatif
     {
         $wallet = new Wallet('EUR');
         $this->expectException(\Exception::class);
         $this->expectExceptionMessage('Invalid amount');
         $wallet->addFund(-10);
     }
-    public function testWalletSetBalanceWithNegativeAmount(): void
+    public function testWalletSetBalanceWithNegativeAmount(): void //teste le set de balance avec un montant négatif
     {
         $wallet = new Wallet('EUR');
         $this->expectException(\Exception::class);
         $this->expectExceptionMessage('Invalid balance');
         $wallet->setBalance(-10);
     }
-    public function testWalletSetBalanceWithValidAmount(): void
+    public function testWalletSetBalanceWithValidAmount(): void //teste le set de balance avec un montant valide
     {
         $wallet = new Wallet('EUR');
         $wallet->setBalance(100);
         $this->assertEquals(100, $wallet->getBalance());
     }
-    public function testWalletSetCurrencyWithValidCurrency(): void
+    public function testWalletSetCurrencyWithValidCurrency(): void //teste le set de devise avec une devise valide
     {
         $wallet = new Wallet('EUR');
         $wallet->setCurrency('EUR');
         $this->assertEquals('EUR', $wallet->getCurrency());
     }
-    public function testWalletSetCurrencyWithInvalidCurrency(): void
+    public function testWalletSetCurrencyWithInvalidCurrency(): void //teste le set de devise avec une devise invalide
     {
         $wallet = new Wallet('EUR');
         $this->expectException(\Exception::class);
         $this->expectExceptionMessage('Invalid currency');
-        $wallet->setCurrency('INVALID');
+        $wallet->setCurrency('GBP');
     }
 }
