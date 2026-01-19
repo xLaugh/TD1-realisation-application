@@ -121,4 +121,11 @@ class WalletTest extends TestCase
         $wallet->removeFund(45);
         $this->assertEquals(100, $wallet->getBalance());
     }
+
+    public function testWalletSetBalanceWithZeroAmount(): void //teste le set de balance avec un montant zéro
+    {
+        $wallet = new Wallet('USD');
+        $wallet->setBalance(0);
+        $this->assertEquals(0, $wallet->getBalance());
+    }
 }
