@@ -82,3 +82,6 @@ docker compose run --rm node npm run format
     - **\_\_test\_\_** : Dossier contenant les tests pour le store
   - **views** : Dossier contenant les pages de l'application
 - **coverage** : Dossier contentant les rapports de test coverage
+
+## Rendu du coverage :
+![alt text](image.png)

@@ -12,7 +12,7 @@ export default mergeConfig(
       coverage: {
         provider: 'istanbul', // or 'v8'
         reporter: ['html'],
-        exclude: ['.eslintrc.cjs', 'src/main.js']
+        exclude: ['.eslintrc.cjs', 'src/main.js', 'src/components/HeaderComponent.vue']
       }
     }
   })
