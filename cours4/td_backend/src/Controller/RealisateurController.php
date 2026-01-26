@@ -16,7 +16,7 @@ final class RealisateurController extends AbstractController
 
         return $this->render('realisateur/index.html.twig', [
             'controller_name' => 'RealisateurController',
-            'realisateurs' =>$realisateurs,
+            'realisateurs' => $realisateurs,
         ]);
     }
 }

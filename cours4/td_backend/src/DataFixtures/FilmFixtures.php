@@ -15,7 +15,6 @@ class FilmFixtures extends Fixture
         $faker = Factory::create('fr_FR');
 
         for ($i = 0; $i < 5; $i++) {
-
             $realisateur = new Realisateur();
             $realisateur
                 ->setNom($faker->lastName())
