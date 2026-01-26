@@ -22,9 +22,9 @@ Lire les conseils ci dessous avant de commencer + lire le cours associé.
    
 2. **Linters et tests PHP** (15min)
    - [x] Php Unit, PHPStan et PHPCs sont déja ajoutés au projet. Ils ont déja des fichiers de configuration de base.
-   - [ ] Créer des classes de test basiques pour les 2 entités (quelques tests dans chaque pour la démo). Bien structurer les dossiers de tests.
+   - [X] Créer des classes de test basiques pour les 2 entités (quelques tests dans chaque pour la démo). Bien structurer les dossiers de tests.
    - [x] Pas besoin de code coverage, ni de tout tester, ce n'est pas le but aujourd'hui, mais si vous avez envie vous pouvez le faire !
-   - [ ] S’assurer que les linters et tests unitaires fonctionnent et passent correctement en local => corriger les erreurs eventuelles (sinon votre code ne passera pas la CI/CD plus tard !)
+   - [X] S’assurer que les linters et tests unitaires fonctionnent et passent correctement en local => corriger les erreurs eventuelles (sinon votre code ne passera pas la CI/CD plus tard !)
 
 3. **Configurer un pipeline de tests & linters via GitHub Actions ou via GitLab CI** (1h30)
     - [ ] Créer un fichier de config CI selon la plateforme utilisée, comprenant :

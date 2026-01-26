@@ -12,13 +12,28 @@ docker compose up
 => http://localhost:8080
 
 ## Initialisation de la base de données + Peuplement
+
+Pour lancer l'inialisation de la base de données, il faut lancer les commande dans le container docker :
+
 ```bash
-# Todo...
+docker exec -it [id du container] bash
+```
+
+Puis, une fois à l'intérieur il faut effectuer ces 2 commandes :
+```bash
+php bin/console doctrine:migration:migrate
 ````
 
-## Accès aux vues :
-// TODO ...
+Pour cette deuxième commande, il y aura une question sur la purge des données. On doit répondre "yes"
+```bash
+php bin/console doctrine:fixtures:load
+```
 
+## Accès aux vues :
+Lien pour voir la liste des réalisateurs :  
+http://localhost:8080/realisateur  
+Lien pour voir la liste des films :  
+http://localhost:8080/film
 ---
 
 
