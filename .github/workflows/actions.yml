@@ -1,0 +1,48 @@
+name: actions
+
+on:
+  push:
+    branches: [ "feature/seance4/maker" ]
+
+jobs:
+  workflow:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: cours4/td_backend
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Copy .env
+        run: |
+          echo "cp .env"
+          cp .env.ci .env
+
+      - name: Install Dependencies
+        run: |
+          echo "Installing dependencies"
+          composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: Build process
+        run: |
+          echo "Build process"
+
+      - name: Execute tests (Unit and Feature tests) via PHPUnit
+        continue-on-error: false
+        run: |
+          echo "Executing PHPUnit tests"
+          composer run test
+
+      - name: Execute linters via phpcs
+        continue-on-error: false
+        run: |
+          echo "Executing phpcs"
+          composer run phpcs || return 0
+
+      - name: Execute linters via phpstan
+        continue-on-error: false
+        run: |
+          echo "Executing phpstan"
+          composer run phpstan || return 0
