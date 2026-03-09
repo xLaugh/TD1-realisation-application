@@ -56,4 +56,5 @@ Préparation de la maintenance :
 |              Twig              |           4           |             6             |
 
 Réaliser la maintenance :  
-
+1. Mise à jour de PHP :  
+   - 7.4 -> 8.1
