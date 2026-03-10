@@ -58,3 +58,9 @@ Préparation de la maintenance :
 Réaliser la maintenance :  
 1. Mise à jour de PHP :  
    - 7.4 -> 8.1
+2. Mise à jour des frameworks :
+   - Slim 2.6.3 -> Slim 4 
+   - Twig 1.x -> Twig 3
+3. Mise à jour des dépendances :
+   - illuminate/database 4 -> 9
+4. composer.json : ajout de "php": ">=8.1", versions contraintes à jour (Slim 4, Twig 3, Illuminate 9)
