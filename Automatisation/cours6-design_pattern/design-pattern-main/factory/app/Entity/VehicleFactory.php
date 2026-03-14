@@ -15,4 +15,15 @@ class VehicleFactory {
                 throw new \InvalidArgumentException("Type de véhicule inconnu : $type");
         }
     }
+
+    public static function createVehicleByDistanceAndWeight(float $distanceKm, float $weightKg, $costPerKm, $fuelType): VehicleInterface
+    {
+        if ($weightKg > 200) {
+            return new Truck($costPerKm, $fuelType);
+        }
+        if ($distanceKm < 20 && $weightKg <= 20) {
+            return new Bicycle($costPerKm, $fuelType);
+        }
+        return new Car($costPerKm, $fuelType);
+    }
 }
