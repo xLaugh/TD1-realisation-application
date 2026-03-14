@@ -2,7 +2,8 @@
 
 namespace App\Entity;
 
-class Truck {
+class Truck implements VehicleInterface
+{
     private $costPerKm;
     private $fuelType;
 
