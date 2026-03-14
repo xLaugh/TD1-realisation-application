@@ -9,6 +9,7 @@ use App\MusicBand;
 
 class UserMusicBandTest extends TestCase
 {
+		// NE PAS MODIFIER CETTE CLASSE
     public function testBasicLaptop()
     {
         $albert = new User('Albert Mudhat');
