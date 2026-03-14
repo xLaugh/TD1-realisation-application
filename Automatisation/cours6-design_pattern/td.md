@@ -11,10 +11,10 @@ Chaque projet sera alors accessible via localhost:8080 (sauf exceptions indiqué
 
 #### BUILDER
 Créer un Query Builder pour construire des requêtes SQL de manière fluide et progressive : 
-- [ ] Créez une interface QueryBuilder qui représente le Query Builder. Cette classe devra avoir des méthodes pour chaque partie d'une requête de base de donnée, telles que select(), from(), where(), etc.
-- [ ] Créez une classe MySqlQueryBuilder qui implement QueryBuilder avec les methodes corespondant à MySql.
-- [ ] Implémentez ces méthodes pour permettre aux utilisateurs de spécifier les parties de la requête de manière progressive.
-- [ ] Testez votre implémentation en créant plusieurs requêtes SQL à l'aide du Query Builder et en vérifiant qu'elles sont construites correctement, et en les affichante sous forme de texte.
+- [X] Créez une interface QueryBuilder qui représente le Query Builder. Cette classe devra avoir des méthodes pour chaque partie d'une requête de base de donnée, telles que select(), from(), where(), etc.
+- [X] Créez une classe MySqlQueryBuilder qui implement QueryBuilder avec les methodes corespondant à MySql.
+- [X] Implémentez ces méthodes pour permettre aux utilisateurs de spécifier les parties de la requête de manière progressive.
+- [X] Testez votre implémentation en créant plusieurs requêtes SQL à l'aide du Query Builder et en vérifiant qu'elles sont construites correctement, et en les affichante sous forme de texte.
 
 ---
 
@@ -29,8 +29,8 @@ Grâce au `decorator`, créer la possibilité d'ajouter une carte Graphique ou u
 Une fois ces décorators créés, completer les tests et les executer 
 
 #### FACTORY
-- [ ] Vous avez 3 type de véhicule disponible. Essayez de créer une interface commune, puis de créer une factory pour obtenir l'un des 3 moyens de transports.
-- [ ] Dans un second temps créer une 2e methode dans cette Factory pour obtenir un vehicule en fonction de la distance et du poids transporté (si <20km, c'est le velo, sinon c'est la voiture. Si il y a plus de 20kg ça sera la voiture et si plus de 200kg le camion.)
+- [X] Vous avez 3 type de véhicule disponible. Essayez de créer une interface commune, puis de créer une factory pour obtenir l'un des 3 moyens de transports.
+- [X] Dans un second temps créer une 2e methode dans cette Factory pour obtenir un vehicule en fonction de la distance et du poids transporté (si <20km, c'est le velo, sinon c'est la voiture. Si il y a plus de 20kg ça sera la voiture et si plus de 200kg le camion.)
 
 #### OBSERVER 
 **Pas d'accès via localhost:8080 pour cet exercice. Pour lancer les tests : faire un "docker compose run --rm php composer run-script phpunit".**
