@@ -23,9 +23,9 @@ Créer un Query Builder pour construire des requêtes SQL de manière fluide et 
 
 Vous avez besoin de gérer des Ordinateur avec plusieurs déclinaisons ! Vous trouverez une class Laptop, qui implémente l'interface Computer.
 Grâce au `decorator`, créer la possibilité d'ajouter une carte Graphique ou un écran OLED :
-- [ ] Créez des classes décoratrices (par exemple, GPUDecorator et OLEDScreenDecorator) qui implémentent également l'interface Computer et prennent un objet Computer en paramètre dans leur constructeur. Ces classes doivent ajouter des fonctionnalités supplémentaires à l'ordinateur de base.
-- [ ] Implémentez les méthodes getDescription() dans les classes décoratrices pour inclure les descriptions supplémentaires des fonctionnalités ajoutées.
-- [ ] Testez votre implémentation en créant plusieurs objets Computer avec différentes combinaisons de décorateurs et en vérifiant que les descriptions sont correctes.
+- [X] Créez des classes décoratrices (par exemple, GPUDecorator et OLEDScreenDecorator) qui implémentent également l'interface Computer et prennent un objet Computer en paramètre dans leur constructeur. Ces classes doivent ajouter des fonctionnalités supplémentaires à l'ordinateur de base.
+- [X] Implémentez les méthodes getDescription() dans les classes décoratrices pour inclure les descriptions supplémentaires des fonctionnalités ajoutées.
+- [X] Testez votre implémentation en créant plusieurs objets Computer avec différentes combinaisons de décorateurs et en vérifiant que les descriptions sont correctes.
 Une fois ces décorators créés, completer les tests et les executer 
 
 #### FACTORY
