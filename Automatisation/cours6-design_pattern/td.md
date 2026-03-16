@@ -36,13 +36,13 @@ Une fois ces décorators créés, completer les tests et les executer
 **Pas d'accès via localhost:8080 pour cet exercice. Pour lancer les tests : faire un "docker compose run --rm php composer run-script phpunit".**
 
 Vous avez deux entités, des Utilisateur (`User`) et des groupe de musique (`MusicBand`). Si un utilisateurs suit un groupe et que ce groupe ajoute une date, l'utilisateur doit etre notifié.
-- [ ] Utilisez le design pattern Observer pour remplir cette fonction. 
-- [ ] La commande de tests doit retourner un resultat juste.
+- [X] Utilisez le design pattern Observer pour remplir cette fonction. 
+- [X] La commande de tests doit retourner un resultat juste.
 
 **note:** utilisez les interface [SplObserver](https://www.php.net/manual/fr/class.splobserver.php) et [SplSubject](https://www.php.net/manual/fr/class.splsubject.php), et ne pas modifier la classe de test.
 
 #### SINGLETON
-- [ ] Créez un classe Config qui suit le design pattern Singleton. Cette classe aura un attribut `settings` privé et une fonction `get()` qui permet de récuperer la valeur d'une clé.
+- [X] Créez un classe Config qui suit le design pattern Singleton. Cette classe aura un attribut `settings` privé et une fonction `get()` qui permet de récuperer la valeur d'une clé.
 
 ---
 
