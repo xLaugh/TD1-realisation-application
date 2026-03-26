@@ -77,6 +77,11 @@ $app->get('/', function () use ($twig, $menu, $chemin, $cat) {
     $index->displayAllAnnonce($twig, $menu, $chemin, $cat->getCategories());
 });
 
+$app->get('/exception', function ($request,$response) use ($twig, $menu, $chemin, $cat) {
+	$index = new index();
+	$index->displayException($twig, $menu, $chemin, $cat->getCategories());
+});
+
 $app->get('/item/{n}', function ($request, $response, $arg) use ($twig, $menu, $chemin, $cat) {
     $n     = $arg['n'];
     $item = new item();

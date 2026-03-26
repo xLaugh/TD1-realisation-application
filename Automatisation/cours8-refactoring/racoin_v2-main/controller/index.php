@@ -49,4 +49,11 @@ class index
         }
         $this->annonce = $annonce;
     }
+
+	/**
+	 * @throws \Exception
+	 */
+	public function displayException($twig, $menu, $chemin, $cat) {
+		throw new \Exception('Cette méthode déclenche une exception.');
+	}
 }
