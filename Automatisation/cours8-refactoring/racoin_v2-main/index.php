@@ -1,10 +1,10 @@
 <?php
 require 'vendor/autoload.php';
 
-use controller\actionItem\getCategorie;
-use controller\actionItem\getDepartment;
+use controller\item\actionItem\GetCategorie;
+use controller\item\actionItem\getDepartment;
 use controller\index;
-use controller\item;
+use controller\item\item;
 use db\connection;
 use model\Annonce;
 use model\Annonceur;
