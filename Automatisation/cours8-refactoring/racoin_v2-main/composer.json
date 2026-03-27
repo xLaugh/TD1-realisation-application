@@ -7,6 +7,10 @@
         "ext-mysqli": "*",
         "ext-pdo": "*"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^11.0",
+        "mockery/mockery": "^1.6"
+    },
     "autoload":{
         "psr-0":{
             "controller":"",
@@ -18,5 +22,8 @@
         "allow-plugins": {
             "kylekatarnls/update-helper": true
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit tests/Functional/RatCoinTest.php"
     }
 }
