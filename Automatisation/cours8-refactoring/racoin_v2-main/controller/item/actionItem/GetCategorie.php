@@ -16,9 +16,9 @@ class getCategorie {
     }
 
     public function getCategorieContent($chemin, $n) {
-        $tmp = Annonce::with("Annonceur")->orderBy('id_annonce','desc')->where('id_categorie', "=", $n)->get();
-        $annonce = [];
-        foreach($tmp as $t) {
+        $annonce = Annonce::with("Annonceur")->orderBy('id_annonce','desc')->where('id_categorie', "=", $n)->get();
+        $contenuAnnonce = [];
+        foreach($annonce as $t) {
             $t->nb_photo = Photo::where("id_annonce", "=", $t->id_annonce)->count();
             if($t->nb_photo > 0){
                 $t->url_photo = Photo::select("url_photo")
@@ -30,9 +30,9 @@ class getCategorie {
             $t->nom_annonceur = Annonceur::select("nom_annonceur")
                 ->where("id_annonceur", "=", $t->id_annonceur)
                 ->first()->nom_annonceur;
-            array_push($annonce, $t);
+            array_push($contenuAnnonce, $t);
         }
-        $this->annonce = $annonce;
+        $this->annonce = $contenuAnnonce;
     }
 
     public function displayCategorie($twig, $menu, $chemin, $cat, $n) {
