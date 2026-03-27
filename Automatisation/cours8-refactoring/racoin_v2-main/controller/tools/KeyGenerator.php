@@ -1,6 +1,5 @@
 <?php
 
-namespace controller;
 
 use model\ApiKey;
 

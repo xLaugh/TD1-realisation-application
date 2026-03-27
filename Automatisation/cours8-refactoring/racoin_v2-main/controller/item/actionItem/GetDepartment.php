@@ -1,6 +1,6 @@
 <?php
 
-namespace controller;
+namespace controller\item\actionItem;
 
 use model\Departement;
 

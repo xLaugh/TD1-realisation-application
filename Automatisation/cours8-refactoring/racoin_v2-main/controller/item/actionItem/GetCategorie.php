@@ -1,11 +1,11 @@
 <?php
 
-namespace controller;
+namespace controller\item\actionItem;
 
-use model\Categorie;
 use model\Annonce;
-use model\Photo;
 use model\Annonceur;
+use model\Categorie;
+use model\Photo;
 
 class getCategorie {
 

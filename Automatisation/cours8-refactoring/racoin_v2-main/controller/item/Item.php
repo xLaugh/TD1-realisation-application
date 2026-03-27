@@ -1,6 +1,6 @@
 <?php
 
-namespace controller;
+namespace controller\item;
 use AllowDynamicProperties;
 use model\Annonce;
 use model\Annonceur;
